@@ -2,16 +2,16 @@ class Solution {
 public:
     vector<int> replaceElements(vector<int>& arr) {
     
-    // Brute force approach
-    for(int i=0;i<arr.size()-1;i++){
-        int maxi=0;
-        for (int  j = i+1; j < arr.size(); j++)
-        {
-            maxi = max(maxi,arr[j]);
-        }
-        arr[i] = maxi;
-    }
-    arr[arr.size()-1] = -1;
+    int max_ele =-1;
+    int temp = 0;
+   
+   for(int i = arr.size()-1;i>=0;i--){
+       
+       temp = arr[i];
+       arr[i] = max_ele;
+       max_ele = max(temp,max_ele);
+
+   }
         return arr;
         
     }
