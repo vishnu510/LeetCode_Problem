@@ -1,7 +1,7 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-       unordered_set<int> s;
+        unordered_set<int> s;
         for (auto x : nums) {
             s.insert(x);
         }
