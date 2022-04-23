@@ -1,36 +1,31 @@
 class Solution {
 public:
     int nextGreaterElement(int n) {
-        int temp = n;
-        vector<int> res;
-        while(temp){
-            res.push_back(temp%10);
-            temp/=10;
+        int num = n;
+        vector<int> nums;
+        while(num>0){
+            nums.push_back(num%10);
+            num/=10;
         }
-        reverse(res.begin(),res.end());
+        reverse(nums.begin(),nums.end());
+        num = nums.size();
         int l,m;
-        temp = res.size();
-        for(l=temp-2;l>=0;l--){
-            if(res[l]<res[l+1]){
-                break;
-            }
+        for(l=num-2;l>=0;l--){
+            if(nums[l]<nums[l+1]) break;
         }
-        if(l<0){
-            return -1;
-        }
+        if(l<0) return -1;
         else{
-            for(m = temp-1;m>l;m--){
-                if(res[m]>res[l]) break;
+            for(m = num-1;m>l;m--){
+                if(nums[m]>nums[l]) break;
             }
-                swap(res[m],res[l]);
-                reverse(res.begin()+l+1,res.end());
-            
+            swap(nums[m],nums[l]);
+            reverse(nums.begin()+l+1,nums.end());
         }
-        long long result =0;
-        for(int i=0;i<temp;i++){
-            result = result*10 + res[i];
+        long long res = 0;
+        for(int i=0;i<num;i++){
+            res = res*10 + nums[i];
         }
-        if(result>INT_MAX) return -1;
-        return result;
+        if(res>INT_MAX) return -1;
+        return res;
     }
 };
