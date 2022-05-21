@@ -11,23 +11,20 @@
  */
 class Solution {
 public:
-    void dfs(TreeNode* root, vector<int>& v) {
-        if (!root) return;
-        if (!(root->left || root->right)) {
-            v.push_back(root->val);
+    void check(TreeNode* root,vector<int> &vec){
+        if(!root) return;
+        if(!(root->left || root->right)){
+            vec.push_back(root->val);
         }
-        dfs(root->left, v);
-        dfs(root->right, v);
-        
+        check(root->left,vec);
+        check(root->right,vec);
     }
     
     bool leafSimilar(TreeNode* root1, TreeNode* root2) {
-        vector<int> v1{};
-        vector<int> v2{};
-        
-        dfs(root1, v1);
-        dfs(root2, v2);
-        
-        return v1 == v2;
+        vector<int> rootA{};
+        vector<int> rootB{};
+        check(root1,rootA);
+        check(root2,rootB);
+        return rootA==rootB;
     }
 };
