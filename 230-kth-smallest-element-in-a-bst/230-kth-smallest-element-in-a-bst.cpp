@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-  vector<int> nums;
+
 vector<int> kthMax(TreeNode* root){
    if(!root) return {};
    kthMax(root->left);
@@ -20,8 +20,9 @@ vector<int> kthMax(TreeNode* root){
    return nums;
 }
 int kthSmallest(TreeNode* root, int k) {
-        vector<int> ans = kthMax(root);
-        
+        vector<int> ans = kthMax(root);   
         return ans[k-1];
     }
+    protected:
+    vector<int> nums;
 };
