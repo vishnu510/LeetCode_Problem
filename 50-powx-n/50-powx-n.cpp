@@ -15,5 +15,5 @@ public:
 		if(n<0)
 			ans = 1/(ans);
 		return ans;
-}
+ }
 };
