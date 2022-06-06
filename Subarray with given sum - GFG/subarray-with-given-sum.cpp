@@ -12,18 +12,22 @@ class Solution
     {
         // Your code here
         vector<int> ans;
-        int i,j,currSum;
-        for(i=0;i<n;i++){
-            currSum = arr[i];
-            for(j=i+1;j<=n;j++){
-                if(currSum==s){
-                    ans.push_back(i+1);
-                    ans.push_back(j);
-                    return ans;
-                }
-                if(currSum>s || j==n) break;
-                currSum+=arr[j];
+        int start=0,i;
+        long long currSum=arr[0];
+        for(i=1;i<=n;i++){
+            while(currSum>s && start<i-1){
+                currSum-=arr[start];
+                start++;
             }
+            if(currSum==s){
+                ans.push_back(start+1);
+                ans.push_back(i);
+                return ans;
+            }
+            if(i<n){
+                currSum+=arr[i];
+            }
+            
         }
         ans.push_back(-1);
         return ans;
