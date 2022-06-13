@@ -11,17 +11,21 @@
  */
 class Solution {
 public:
-    bool check(TreeNode* root,TreeNode* lower,TreeNode *upper){
-   if(!root) return true;
-   if(lower and root->val<=lower->val) return false;
-   if(upper and root->val>=upper->val) return false;
-   return check(root->left,lower,root) and check(root->right,root,upper);
-
- }
+    void inorder(TreeNode* root,vector<int>& ans){
+        if(root==NULL) return;
+        inorder(root->left,ans);
+        ans.push_back(root->val);
+        inorder(root->right,ans);
+    }
  bool isValidBST(TreeNode* root) {
 
-        return check (root,NULL,NULL);
-    
-    
+        vector<int> ans;
+        inorder(root,ans);
+        for(int i=0;i<ans.size()-1;i++){
+            if(ans[i]>=ans[i+1]){
+                return false;
+            }
+        }
+        return true;
     }
 };
