@@ -15,16 +15,14 @@ class Solution{
         //code here
         ll int count =0,sum =0;
         unordered_map<ll int ,ll int> ump;
-        int j=0;
-        while(j<n){
-            sum+=arr[j];
-            if(sum==0) count++;
-            if(ump.find(sum)!=ump.end()){
-                count+=ump[sum];
-            }
-            ump[sum]++;
-            j++;
-        }
+        ump[0]++;
+       for(int i=0;i<n;i++){
+           sum+=arr[i];
+           if(ump.find(sum)!=ump.end()){
+               count+=ump[sum];
+           }
+           ump[sum]++;
+       }
         return count;
     }
 };
