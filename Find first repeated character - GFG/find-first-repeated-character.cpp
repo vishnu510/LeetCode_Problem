@@ -19,12 +19,13 @@ int main()
 string firstRepChar(string s)
 {
     //code here.
-    vector<int> fre(26);
-    string ans ="";
-    for(auto &it:s){
-        fre[it-'a']++;
-        if(fre[it-'a']==2){
-            return ans+it;
+    unordered_map<char,int> ump;
+    string ans = "";
+    for(int i=0;i<s.size();i++){
+        ump[s[i]]++;
+        if(ump[s[i]]>1){
+            ans = s[i];
+            return ans;
             break;
         }
     }
