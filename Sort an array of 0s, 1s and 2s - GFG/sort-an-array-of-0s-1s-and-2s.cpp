@@ -10,22 +10,18 @@ class Solution
     public:
     void sort012(int a[], int n)
     {
-        // coode here 
-        int c0 =0,c1=0,c2=0;
-        for(int i=0;i<n;i++){
-            if(a[i]==0) c0++;
-            else if(a[i]==1) c1++;
-            else c2++;
-        }
-        int i =0;
-        for(int i=0;i<c0;i++){
-            a[i] =0;
-        }
-        for(int i=c0;i<c0+c1;i++){
-            a[i] =1;
-        }
-        for(int i=c0+c1;i<c0+c1+c2;i++){
-            a[i] =2;
+        // code here
+        int start=0,curr=0,end =n-1;
+        while(curr<=end){
+            if(a[curr]==0){
+                swap(a[curr++],a[start++]);
+            }
+            else if(a[curr]==2){
+                swap(a[curr],a[end--]);
+            }
+            else{
+                curr++;
+            }
         }
     }
     
