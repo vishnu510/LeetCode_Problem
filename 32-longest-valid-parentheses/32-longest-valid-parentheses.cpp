@@ -1,24 +1,59 @@
 class Solution {
 public:
     int longestValidParentheses(string s) {
-        stack<int>stck;
-        stck.push(-1);
-        int res=0;
-        
-        for(int i=0;i<s.size();i++){
-            
-            if(s[i]=='(') stck.push(i);
-            
-            else{
-                if(!stck.empty())stck.pop();
-                
-                if(!stck.empty()){
-                    res=max(res,i-stck.top());
-                }
-                else stck.push(i);
-            }
-        }
-        
-        return res;
+       int left = 0, right = 0, maxLength = 0;
+
+  // Left pass iteration
+  
+  for (int i = 0; i < s.length(); i++)
+  {
+    // Update left
+    if ( s[i] == '(' )
+    {
+      left++;
+    }
+  
+    // Update right
+    else {
+      right++;
+    }
+
+    // Update the maximum length of valid parentheses
+    if (left == right) {
+      maxLength = max(maxLength, 2 * right);
+    }
+
+    // Updating left and right to '0'
+    else if (right >= left) {
+      left = 0;
+      right = 0;
+    }
+  }
+  left = right = 0;
+
+  // Right pass iteration
+  for (int i = s.length() - 1; i >= 0; i--) {
+    // Update left
+    if (s[i] == '(') {
+      left++;
+    }
+
+    // Update right
+    else {
+      right++;
+    }
+
+    // Update the maximum length of valid parentheses
+    if (left == right) {
+      maxLength = max(maxLength, 2 * left);
+    }
+
+    // Updating left and right to '0'
+    else if (left >= right) {
+      left = 0;
+      right = 0;
+    }
+  }
+  return maxLength;
     }
 };
